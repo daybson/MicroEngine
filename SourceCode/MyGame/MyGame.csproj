@@ -71,9 +71,23 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MicroEngine\MicroEngine.csproj">
-      <Project>{040ce75f-4403-434b-9bdc-7a6d2a52e21a}</Project>
+      <Project>{1a267527-a873-4a31-b61e-7d25bbd1030e}</Project>
       <Name>MicroEngine</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="csfml-audio-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-graphics-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-system-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-window-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

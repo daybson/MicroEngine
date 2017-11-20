@@ -12,7 +12,7 @@ namespace MicroEngine.Entities.Primitives
     /// <summary>
     /// Base class for primitive types
     /// </summary>
-    public abstract class Primitive : Drawable, IMover
+    public abstract class Primitive : Drawable, ITransformable
     {
         public Shape Shape { get; protected set; }
         public Vector2f Center { get; protected set; }
@@ -21,6 +21,9 @@ namespace MicroEngine.Entities.Primitives
         public Color ShapeFillColor { get { return Color.White; } }
 
 
+        /// <summary>
+        /// Configure the Shape's color and center
+        /// </summary>
         protected virtual void ConfigurateShape()
         {
             if (Shape != null)
@@ -28,7 +31,7 @@ namespace MicroEngine.Entities.Primitives
                 Shape.OutlineColor = ShapeOutlineColor;
                 Shape.OutlineThickness = ShapeOutlineThickness;
                 Shape.FillColor = ShapeFillColor;
-                Shape.Position = Center;
+                Shape.Origin = Center;
             }
         }
 
@@ -47,6 +50,12 @@ namespace MicroEngine.Entities.Primitives
         {
             if (Shape != null)
                 Shape.Position += displacement;
+        }
+
+        public virtual void Rotate(float angle)
+        {
+            if (Shape != null)
+                Shape.Rotation += angle;
         }
     }
 }

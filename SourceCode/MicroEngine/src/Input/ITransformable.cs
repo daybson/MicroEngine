@@ -10,8 +10,9 @@ namespace MicroEngine.Input
     /// <summary>
     /// Interface to expose movement methods
     /// </summary>
-    public interface IMover
+    public interface ITransformable
     {
         void Move(Vector2f displacement);
+        void Rotate(float angle);
     }
 }

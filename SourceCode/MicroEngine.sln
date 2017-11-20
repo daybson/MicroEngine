@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroEngine", "MicroEngine\MicroEngine.csproj", "{040CE75F-4403-434B-9BDC-7A6D2A52E21A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGame", "MyGame\MyGame.csproj", "{FF6ADC01-554A-4155-9BD4-2E9993369230}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroEngine", "MicroEngine\MicroEngine.csproj", "{1A267527-A873-4A31-B61E-7D25BBD1030E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{040CE75F-4403-434B-9BDC-7A6D2A52E21A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{040CE75F-4403-434B-9BDC-7A6D2A52E21A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{040CE75F-4403-434B-9BDC-7A6D2A52E21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{040CE75F-4403-434B-9BDC-7A6D2A52E21A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FF6ADC01-554A-4155-9BD4-2E9993369230}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FF6ADC01-554A-4155-9BD4-2E9993369230}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF6ADC01-554A-4155-9BD4-2E9993369230}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF6ADC01-554A-4155-9BD4-2E9993369230}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A267527-A873-4A31-B61E-7D25BBD1030E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A267527-A873-4A31-B61E-7D25BBD1030E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A267527-A873-4A31-B61E-7D25BBD1030E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A267527-A873-4A31-B61E-7D25BBD1030E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

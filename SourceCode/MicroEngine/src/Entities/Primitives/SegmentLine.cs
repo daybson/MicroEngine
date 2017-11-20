@@ -1,4 +1,5 @@
-﻿using SFML.Graphics;
+﻿using MicroEngine.src.Math2D;
+using SFML.Graphics;
 using SFML.System;
 using System;
 using System.Collections.Generic;
@@ -56,5 +57,18 @@ namespace MicroEngine.Entities.Primitives
                 new Vertex(Point2, this.ShapeOutlineColor)
             };
         }
+
+        public override void Rotate(float angle)
+        {
+            Point2 = Point2.Rotate(Point1, angle);
+            Center = Point2 - Point1;
+
+            this.vertex = new Vertex[2]
+            {
+                new Vertex(Point1, this.ShapeOutlineColor),
+                new Vertex(Point2, this.ShapeOutlineColor)
+            };
+        }
+
     }
 }

@@ -18,13 +18,14 @@ namespace MicroEngine.Entities
     {
         #region Fields
 
-        public IMover Mover { get; private set; }
+        public ITransformable Transformable { get; private set; }
         public Drawable Drawable { get; private set; }
 
         private bool keyA;
         private bool keyS;
         private bool keyW;
         private bool keyD;
+        private bool keyR;
 
         #endregion
 
@@ -35,11 +36,12 @@ namespace MicroEngine.Entities
         /// Constructor that instantiates a new SingleSprite as default Drawable
         /// </summary>
         /// <param name="texturePath">The full path to the texture (path\filename.extension)</param>
-        public Entity(string texturePath)
+        /// <param name="position">The entity's position </param>
+        public Entity(string texturePath, Vector2f position)
         {
-            var singleSprite = new SingleSprite(texturePath);
+            var singleSprite = new SingleSprite(texturePath, position);
             Drawable = singleSprite;
-            Mover = singleSprite;
+            Transformable = singleSprite;
         }
 
 
@@ -50,7 +52,7 @@ namespace MicroEngine.Entities
         public Entity(Primitive primitive)
         {
             Drawable = primitive;
-            Mover = primitive;
+            Transformable = primitive;
         }
         
         #endregion
@@ -74,6 +76,9 @@ namespace MicroEngine.Entities
                 case Key.S:
                     keyS = true;
                     break;
+                case Key.R:
+                    keyR = true;
+                    break;
             }
         }
 
@@ -94,6 +99,9 @@ namespace MicroEngine.Entities
                 case Key.S:
                     keyS = false;
                     break;
+                case Key.R:
+                    keyR = false;
+                    break;
             }
         }
 
@@ -101,13 +109,15 @@ namespace MicroEngine.Entities
         public void Update()
         {
             if (keyA)
-                Mover.Move(new Vector2f(-1, 0));
+                Transformable.Move(new Vector2f(-1, 0));
             if (keyD)
-                Mover.Move(new Vector2f(1, 0));
+                Transformable.Move(new Vector2f(1, 0));
             if (keyW)
-                Mover.Move(new Vector2f(0, -1));
+                Transformable.Move(new Vector2f(0, -1));
             if (keyS)
-                Mover.Move(new Vector2f(0, 1));
+                Transformable.Move(new Vector2f(0, 1));
+            if (keyR)
+                Transformable.Rotate(1);
         }
     }
 }

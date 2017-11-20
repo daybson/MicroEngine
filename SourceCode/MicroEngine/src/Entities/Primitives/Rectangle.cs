@@ -14,13 +14,14 @@ namespace MicroEngine.Entities.Primitives
         public float Width { get; private set; }
 
 
-        public Rectangle(float height, float width, Vector2f center)
+        public Rectangle(float height, float width, Vector2f position)
         {
-            Height = height;
             Width = width;
-            Center = center;
+            Height = height;
+            Center = new Vector2f(Width * 0.5f, Height * 0.5f);
 
             Shape = new RectangleShape(new Vector2f(Width, Height));
+            Shape.Position = position;
             base.ConfigurateShape();
         }
     }

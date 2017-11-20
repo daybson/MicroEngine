@@ -13,12 +13,13 @@ namespace MicroEngine.Entities.Primitives
         public float Radius { get; private set; }
 
 
-        public Circle(float radius, Vector2f center)
+        public Circle(float radius, Vector2f position)
         {
-            Center = center;
             Radius = radius;
+            Center = new Vector2f(radius, radius);
 
             Shape = new CircleShape(Radius);
+            Shape.Position = position;
             base.ConfigurateShape();
         }
     }
