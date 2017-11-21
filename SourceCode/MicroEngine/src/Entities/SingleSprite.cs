@@ -17,11 +17,15 @@ namespace MicroEngine.Entities
         protected Texture texture;
         protected Sprite Sprite { get; set; }
 
+        public Vector2f Position => Sprite.Position;
+        public Vector2f Center => Sprite.Origin;
+        public float Rotation => Sprite.Rotation;
+
         public SingleSprite(string texturePath, Vector2f position)
         {
             this.texture = new Texture(texturePath);
             Sprite = new Sprite(this.texture);
-            Sprite.Origin = (Vector2f) this.texture.Size * 0.5f;
+            Sprite.Origin = (Vector2f)this.texture.Size * 0.5f;
             Sprite.Position += position;
         }
 

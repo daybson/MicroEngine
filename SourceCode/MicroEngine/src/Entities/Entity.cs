@@ -49,7 +49,7 @@ namespace MicroEngine.Entities
         /// Constructor that instantiates a new Primitive as default Drawable
         /// </summary>
         /// <param name="primitive">The primitive to be used</param>
-        public Entity(Primitive primitive)
+        public Entity(PrimitiveView primitive)
         {
             Drawable = primitive;
             Transformable = primitive;

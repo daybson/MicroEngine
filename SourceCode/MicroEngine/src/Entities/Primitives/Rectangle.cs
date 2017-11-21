@@ -8,7 +8,7 @@ using SFML.System;
 
 namespace MicroEngine.Entities.Primitives
 {
-    public class Rectangle : Primitive
+    public class Rectangle : PrimitiveView
     {
         public float Height { get; private set; }
         public float Width { get; private set; }

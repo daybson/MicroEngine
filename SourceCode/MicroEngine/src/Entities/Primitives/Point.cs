@@ -8,7 +8,7 @@ using SFML.System;
 
 namespace MicroEngine.Entities.Primitives
 {
-    public class Point : Primitive
+    public class Point : PrimitiveView
     {
         public Point(Vector2f center)
         {

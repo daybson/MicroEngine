@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MicroEngine.Entities.Primitives
 {
-    public class SegmentLine : Primitive
+    public class SegmentLine : PrimitiveView
     {
         public Vector2f Point1 { get; private set; }
         public Vector2f Point2 { get; private set; }

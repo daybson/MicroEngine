@@ -12,13 +12,16 @@ namespace MicroEngine.Entities.Primitives
     /// <summary>
     /// Base class for primitive types
     /// </summary>
-    public abstract class Primitive : Drawable, ITransformable
+    public abstract class PrimitiveView : Drawable, ITransformable
     {
         public Shape Shape { get; protected set; }
-        public Vector2f Center { get; protected set; }
         public Color ShapeOutlineColor { get { return Color.Green; } }
         public float ShapeOutlineThickness { get { return 1f; } }
         public Color ShapeFillColor { get { return Color.White; } }
+
+        public Vector2f Center { get; protected set; }
+        public Vector2f Position => Shape.Position;
+        public float Rotation => Shape.Rotation;
 
 
         /// <summary>

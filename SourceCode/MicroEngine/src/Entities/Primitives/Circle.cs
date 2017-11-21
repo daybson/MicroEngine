@@ -8,7 +8,7 @@ using SFML.System;
 
 namespace MicroEngine.Entities.Primitives
 {
-    public class Circle : Primitive
+    public class Circle : PrimitiveView
     {
         public float Radius { get; private set; }
 
