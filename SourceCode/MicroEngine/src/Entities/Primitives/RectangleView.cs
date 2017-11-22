@@ -8,13 +8,13 @@ using SFML.System;
 
 namespace MicroEngine.Entities.Primitives
 {
-    public class Rectangle : PrimitiveView
+    public class RectangleView : PrimitiveView
     {
         public float Height { get; private set; }
         public float Width { get; private set; }
 
 
-        public Rectangle(float height, float width, Vector2f position)
+        public RectangleView(float height, float width, Vector2f position)
         {
             Width = width;
             Height = height;

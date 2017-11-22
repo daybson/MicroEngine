@@ -8,12 +8,12 @@ using SFML.System;
 
 namespace MicroEngine.Entities.Primitives
 {
-    public class Circle : PrimitiveView
+    public class CircleView : PrimitiveView
     {
         public float Radius { get; private set; }
 
 
-        public Circle(float radius, Vector2f position)
+        public CircleView(float radius, Vector2f position)
         {
             Radius = radius;
             Center = new Vector2f(radius, radius);

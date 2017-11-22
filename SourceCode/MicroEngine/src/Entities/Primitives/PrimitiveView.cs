@@ -19,9 +19,9 @@ namespace MicroEngine.Entities.Primitives
         public float ShapeOutlineThickness { get { return 1f; } }
         public Color ShapeFillColor { get { return Color.White; } }
 
-        public Vector2f Center { get; protected set; }
-        public Vector2f Position => Shape.Position;
-        public float Rotation => Shape.Rotation;
+        public Vector2f Center { get; set; }
+        public Vector2f Position { get => Shape.Position; set => Shape.Position = value; }
+        public float Rotation { get => Shape.Rotation; set => Shape.Rotation = value; }
 
 
         /// <summary>

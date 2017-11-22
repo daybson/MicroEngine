@@ -12,9 +12,9 @@ namespace MicroEngine.Input
     /// </summary>
     public interface ITransformable
     {
-        Vector2f Position { get; }
-        Vector2f Center { get; }
-        float Rotation { get; }
+        Vector2f Position { get; set; }
+        Vector2f Center { get; set; }
+        float Rotation { get; set; }
 
         void Move(Vector2f displacement);
         void Rotate(float angle);
