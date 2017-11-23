@@ -32,7 +32,7 @@ namespace MicroEngine.src.Collision
         public Vector2f End { get => Start + Normal * MTD; }
 
 
-        public CollisionInfo(float mtd, Vector2f normal, Vector2f start)
+        public CollisionInfo(Vector2f start, Vector2f normal, float mtd)
         {
             MTD = Math.Abs(mtd);
             Normal = normal;

@@ -17,6 +17,7 @@ namespace MicroEngine.src.Collision.Colliders
         public float Rotation { get => PrimitiveView.Rotation; set => PrimitiveView.Rotation = value; }
         public Vector2f Center { get => PrimitiveView.Center; set => PrimitiveView.Center = value; }
 
+        public Collider() { }
 
         public Collider(PrimitiveView primitiveView)
         {

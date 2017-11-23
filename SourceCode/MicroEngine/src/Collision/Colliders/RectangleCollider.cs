@@ -13,28 +13,48 @@ namespace MicroEngine.src.Collision.Colliders
         public float Height { get; private set; }
 
         public float MinX { get => -Width * 0.5f + PrimitiveView.Position.X; }
-        public float MaxX { get =>  Width * 0.5f + PrimitiveView.Position.X; }
+        public float MaxX { get => Width * 0.5f + PrimitiveView.Position.X; }
 
         public float MinY { get => -Height * 0.5f + PrimitiveView.Position.Y; }
-        public float MaxY { get =>  Height * 0.5f + PrimitiveView.Position.Y; }
+        public float MaxY { get => Height * 0.5f + PrimitiveView.Position.Y; }
 
+
+        public RectangleCollider(float width, float height, Vector2f position) 
+        {
+            Width = width;
+            Height = height;
+            Center = new Vector2f(Width * 0.5f, Height * 0.5f);
+
+            SetupVertex(position);
+            SetupFaceNormal();
+        }
 
         public RectangleCollider(RectangleView view) : base(view)
         {
             Width = view.Width;
             Height = view.Height;
 
-            var halfWidth = view.Width * 0.5f;
-            var halfHeight = view.Height * 0.5f;
+            SetupVertex(view.Position);
+            SetupFaceNormal();
+        }
+
+
+        private void SetupVertex(Vector2f position)
+        {
+            var halfWidth = Width * 0.5f;
+            var halfHeight = Height * 0.5f;
 
             this.Vertex = new Vector2f[4]
             {
-                new Vector2f(-halfWidth + view.Position.X, -halfHeight + view.Position.Y),
-                new Vector2f( halfWidth + view.Position.X, -halfHeight + view.Position.Y),
-                new Vector2f( halfWidth + view.Position.X,  halfHeight + view.Position.Y),
-                new Vector2f(-halfWidth + view.Position.X,  halfHeight + view.Position.Y)
+                new Vector2f(-halfWidth + position.X, -halfHeight + position.Y),
+                new Vector2f( halfWidth + position.X, -halfHeight + position.Y),
+                new Vector2f( halfWidth + position.X,  halfHeight + position.Y),
+                new Vector2f(-halfWidth + position.X,  halfHeight + position.Y)
             };
+        }
 
+        private void SetupFaceNormal()
+        {
             this.FaceNormal = new Vector2f[4]
             {
                 (this.Vertex[1] - this.Vertex[2]).Normalize(),

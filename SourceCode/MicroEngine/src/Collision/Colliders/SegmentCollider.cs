@@ -4,6 +4,7 @@ using System.Text;
 using MicroEngine.Entities.Primitives;
 using SFML.System;
 using MicroEngine.src.Math2D;
+using MicroEngine.src.Collision.Helper;
 
 namespace MicroEngine.src.Collision.Colliders
 {
@@ -11,6 +12,12 @@ namespace MicroEngine.src.Collision.Colliders
     {
         public Vector2f Point1 { get; private set; }
         public Vector2f Point2 { get; private set; }
+
+        public SegmentCollider(Vector2f p1, Vector2f p2)
+        {
+            Point1 = p1;
+            Point2 = p2;
+        }
 
         public SegmentCollider(SegmentView view) : base(view)
         {
@@ -30,5 +37,14 @@ namespace MicroEngine.src.Collision.Colliders
 
             Point2 = this.Point2.Rotate(this.Point1, angle);
         }
+
+        public Range ProjectOnto(Vector2f onto)
+        {
+            Vector2f ontoUnit = onto.Normalize();
+            return new Range(ontoUnit.Dot(Point1),
+                             ontoUnit.Dot(Point2)).Sort();
+        }
+
+
     }
 }

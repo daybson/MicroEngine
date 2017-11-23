@@ -9,6 +9,10 @@ namespace MicroEngine.src.Math2D
 {
     public static class GameMath
     {
+        public static readonly Vector2f MIN_VALUE = new Vector2f(float.MinValue, float.MinValue);
+        public static readonly Vector2f INF_NEGATIVE = new Vector2f(float.NegativeInfinity, float.NegativeInfinity);
+
+
         public static float ClampAngle(float angle)
         {
             while (angle > 360)
@@ -70,6 +74,12 @@ namespace MicroEngine.src.Math2D
         public static float Magnitude(this Vector2f v)
         {
             return (float)Math.Sqrt(v.X * v.X + v.Y * v.Y);
+        }
+
+
+        public static float MagnitudeRaw(this Vector2f v)
+        {
+            return v.X * v.X + v.Y * v.Y;
         }
 
 

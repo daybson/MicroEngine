@@ -11,16 +11,24 @@ namespace MicroEngine.src.Collision.Colliders
     {
         public Vector2f Base { get; private set; }
         public Vector2f Direction { get; private set; }
-        private Vector2f secondPoint;
+        public Vector2f SecondPoint { get; private set; }
 
 
-        private void CalculateDirection() => Direction = Base - secondPoint;
+        private void CalculateDirection() => Direction = Base - SecondPoint;
+
+
+        public LineCollider(Vector2f p1, Vector2f p2)
+        {
+            Base = p1;
+            SecondPoint = p2;
+            CalculateDirection();
+        }
 
 
         public LineCollider(SegmentView view) : base(view)
         {
             Base = view.Point1;
-            secondPoint = view.Point2;
+            SecondPoint = view.Point2;
             CalculateDirection();
         }
 
@@ -30,7 +38,7 @@ namespace MicroEngine.src.Collision.Colliders
             base.Move(displacement);
 
             Base += displacement;
-            secondPoint += displacement;
+            SecondPoint += displacement;
             CalculateDirection();
         }
 
@@ -38,7 +46,7 @@ namespace MicroEngine.src.Collision.Colliders
         public override void Rotate(float angle)
         {
             base.Rotate(angle);
-            secondPoint = secondPoint.Rotate(Base, angle);
+            SecondPoint = SecondPoint.Rotate(Base, angle);
             CalculateDirection();
         }
 
@@ -48,6 +56,26 @@ namespace MicroEngine.src.Collision.Colliders
                 return false;
             Vector2f d = Base - b.Base;
             return d.IsParallelTo(Direction);
+        }
+
+
+        public Vector2f GetPointOnLine(float scalar)
+        {
+            /** r = r0 + td
+             * r0 = ponto base
+             * t = escalar
+             * d = direção
+             * */
+            return this.Base + (scalar * this.Direction);
+        }
+
+
+        public bool IsOnOneSide(SegmentCollider s)
+        {
+            Vector2f d1 = s.Point1 - Base;
+            Vector2f d2 = s.Point2 - Base;
+            Vector2f n = Direction.Rotate90Deg();
+            return n.Dot(d1) * n.Dot(d2) > 0;
         }
     }
 }
