@@ -5,7 +5,7 @@ using MicroEngine.Entities.Primitives;
 using MicroEngine.src.Math2D;
 using SFML.System;
 
-namespace MicroEngine.src.Collision
+namespace MicroEngine.src.Collision.Colliders
 {
     public class RectangleCollider : Collider
     {

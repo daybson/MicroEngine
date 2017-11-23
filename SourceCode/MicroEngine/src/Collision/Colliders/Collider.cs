@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MicroEngine.src.Collision
+namespace MicroEngine.src.Collision.Colliders
 {
     public abstract class Collider : ITransformable
     {

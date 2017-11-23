@@ -19,7 +19,8 @@ namespace MyGame
             //this.Game.Entities.Add(new Entity(new Circle(20, new Vector2f(20,20))));
             //this.Game.Entities.Add(new Entity(new Rectangle(20, 50, new Vector2f())));
             //this.Game.Entities.Add(new Entity(new SegmentLine(new Vector2f(), new Vector2f(50, 50))));
-            this.Game.Entities.Add(new Entity(@"D:\Repositorio\MicroEngine\SourceCode\MicroEngine\res\textures\tri.png", new Vector2f(0, 0)));
+            this.Game.Entities.Add(new Entity(new CircleView(1, new Vector2f(50, 50))));
+            //this.Game.Entities.Add(new Entity(@"D:\Repositorio\MicroEngine\SourceCode\MicroEngine\res\textures\tri.png", new Vector2f(0, 0)));
 
             Run();
         }

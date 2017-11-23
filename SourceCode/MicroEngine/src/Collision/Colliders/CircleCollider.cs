@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MicroEngine.Entities.Primitives;
 
-namespace MicroEngine.src.Collision
+namespace MicroEngine.src.Collision.Colliders
 {
     public class CircleCollider : Collider
     {

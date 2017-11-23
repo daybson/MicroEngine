@@ -5,7 +5,7 @@ using MicroEngine.Entities.Primitives;
 using SFML.System;
 using MicroEngine.src.Math2D;
 
-namespace MicroEngine.src.Collision
+namespace MicroEngine.src.Collision.Colliders
 {
     public class LineCollider : Collider
     {
