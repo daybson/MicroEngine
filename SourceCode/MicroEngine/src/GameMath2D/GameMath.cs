@@ -1,12 +1,66 @@
-﻿using SFML.System;
+﻿using MicroEngine.src.Collision.Colliders;
+using MicroEngine.src.Collision.Helper;
+using SFML.System;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MicroEngine.src.Math2D
 {
-    public static class MathVector2D
+    public static class GameMath
     {
+        public static float ClampAngle(float angle)
+        {
+            while (angle > 360)
+                angle -= 360;
+
+            while (angle < -360)
+                angle += 360;
+
+            /* TODO: test if works better than using 'whiles'
+            if (angle > 0)
+                angle = angle - ((int)(angle % 360)) * 360;
+            else
+                angle = angle + ((int)(angle % 360)) * 360;
+            */
+
+            return angle;
+        }
+
+
+        public static bool InclusiveOverlaps(float minA, float maxA, float minB, float maxB)
+        {
+            return minB <= maxA && minA <= maxB;
+        }
+
+
+        public static float ClampOnRange(float x, float min, float max)
+        {
+            if (x < min)
+                return min;
+            else if (max < x)
+                return max;
+            else
+                return x;
+        }
+
+
+        public static Vector2f ClampOnAABB(Vector2f p, RectangleCollider r)
+        {
+            return new Vector2f(ClampOnRange(p.X, r.MinX, r.MaxX),
+                                ClampOnRange(p.Y, r.MinY, r.MaxY));
+        }
+
+
+        public static Range ProjectOnto(this SegmentCollider s, Vector2f onto)
+        {
+            Vector2f ontoUnit = onto.Normalize();
+            Range r = new Range(ontoUnit.Dot(s.Point1),
+                                ontoUnit.Dot(s.Point2));
+            return r.Sort();
+        }
+
+        
         public static string AsString(this Vector2f v)
         {
             return $"({v.X}, {v.Y})";

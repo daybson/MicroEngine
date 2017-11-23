@@ -21,12 +21,13 @@ namespace MicroEngine.src.Collision.Colliders
         public Collider(PrimitiveView primitiveView)
         {
             PrimitiveView = primitiveView;
+            Center = primitiveView.Center;
         }
 
 
         public virtual void Move(Vector2f displacement)
         {
-            Center += displacement;
+            Position += displacement;
 
             if (Vertex != null)
             {

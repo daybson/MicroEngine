@@ -13,12 +13,17 @@ namespace MicroEngine.src.Collision.Colliders
         public Vector2f Direction { get; private set; }
         private Vector2f secondPoint;
 
+
+        private void CalculateDirection() => Direction = Base - secondPoint;
+
+
         public LineCollider(SegmentView view) : base(view)
         {
             Base = view.Point1;
             secondPoint = view.Point2;
             CalculateDirection();
         }
+
 
         public override void Move(Vector2f displacement)
         {
@@ -29,6 +34,7 @@ namespace MicroEngine.src.Collision.Colliders
             CalculateDirection();
         }
 
+
         public override void Rotate(float angle)
         {
             base.Rotate(angle);
@@ -36,6 +42,12 @@ namespace MicroEngine.src.Collision.Colliders
             CalculateDirection();
         }
 
-        private void CalculateDirection() => Direction = Base - secondPoint;
+        public bool IsEquivalent(LineCollider b)
+        {
+            if (!Direction.IsParallelTo(b.Direction))
+                return false;
+            Vector2f d = Base - b.Base;
+            return d.IsParallelTo(Direction);
+        }
     }
 }

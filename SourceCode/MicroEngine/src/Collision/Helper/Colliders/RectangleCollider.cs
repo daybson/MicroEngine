@@ -9,17 +9,30 @@ namespace MicroEngine.src.Collision.Colliders
 {
     public class RectangleCollider : Collider
     {
+        public float Width { get; private set; }
+        public float Height { get; private set; }
+
+        public float MinX { get => -Width * 0.5f + PrimitiveView.Position.X; }
+        public float MaxX { get =>  Width * 0.5f + PrimitiveView.Position.X; }
+
+        public float MinY { get => -Height * 0.5f + PrimitiveView.Position.Y; }
+        public float MaxY { get =>  Height * 0.5f + PrimitiveView.Position.Y; }
+
+
         public RectangleCollider(RectangleView view) : base(view)
         {
+            Width = view.Width;
+            Height = view.Height;
+
             var halfWidth = view.Width * 0.5f;
             var halfHeight = view.Height * 0.5f;
 
             this.Vertex = new Vector2f[4]
             {
-                new Vector2f(-halfWidth, -halfHeight),
-                new Vector2f(halfWidth,  -halfHeight),
-                new Vector2f(halfWidth,   halfHeight),
-                new Vector2f(-halfWidth,  halfHeight)
+                new Vector2f(-halfWidth + view.Position.X, -halfHeight + view.Position.Y),
+                new Vector2f( halfWidth + view.Position.X, -halfHeight + view.Position.Y),
+                new Vector2f( halfWidth + view.Position.X,  halfHeight + view.Position.Y),
+                new Vector2f(-halfWidth + view.Position.X,  halfHeight + view.Position.Y)
             };
 
             this.FaceNormal = new Vector2f[4]
@@ -30,6 +43,7 @@ namespace MicroEngine.src.Collision.Colliders
                 (this.Vertex[0] - this.Vertex[1]).Normalize(),
             };
         }
+
 
         public override void Rotate(float angle)
         {
