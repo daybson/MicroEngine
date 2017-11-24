@@ -9,9 +9,16 @@ namespace MicroEngine.src.Math2D
 {
     public static class GameMath
     {
-        public static readonly Vector2f MIN_VALUE = new Vector2f(float.MinValue, float.MinValue);
-        public static readonly Vector2f INF_NEGATIVE = new Vector2f(float.NegativeInfinity, float.NegativeInfinity);
+        #region Fields
 
+        public static readonly Vector2f MIN_VALUE_VECTOR2F = new Vector2f(float.MinValue, float.MinValue);
+        public static readonly Vector2f INF_NEGATIVE_VECTOR2F = new Vector2f(float.NegativeInfinity, float.NegativeInfinity);
+
+        #endregion
+
+
+
+        #region Angle
 
         public static float ClampAngle(float angle)
         {
@@ -32,63 +39,9 @@ namespace MicroEngine.src.Math2D
         }
 
 
-        public static bool InclusiveOverlaps(float minA, float maxA, float minB, float maxB)
+        public static float AngleBetween(this Vector2f a, Vector2f b)
         {
-            return minB <= maxA && minA <= maxB;
-        }
-
-
-        public static float ClampOnRange(float x, float min, float max)
-        {
-            if (x < min)
-                return min;
-            else if (max < x)
-                return max;
-            else
-                return x;
-        }
-
-
-        public static Vector2f ClampOnAABB(Vector2f p, RectangleCollider r)
-        {
-            return new Vector2f(ClampOnRange(p.X, r.MinX, r.MaxX),
-                                ClampOnRange(p.Y, r.MinY, r.MaxY));
-        }
-
-
-        public static Range ProjectOnto(this SegmentCollider s, Vector2f onto)
-        {
-            Vector2f ontoUnit = onto.Normalize();
-            Range r = new Range(ontoUnit.Dot(s.Point1),
-                                ontoUnit.Dot(s.Point2));
-            return r.Sort();
-        }
-
-        
-        public static string AsString(this Vector2f v)
-        {
-            return $"({v.X}, {v.Y})";
-        }
-
-
-        public static float Magnitude(this Vector2f v)
-        {
-            return (float)Math.Sqrt(v.X * v.X + v.Y * v.Y);
-        }
-
-
-        public static float MagnitudeRaw(this Vector2f v)
-        {
-            return v.X * v.X + v.Y * v.Y;
-        }
-
-
-        public static Vector2f Normalize(this Vector2f v)
-        {
-            var m = v.Magnitude();
-            if (m > 0)
-                return v / m;
-            return v;
+            return (float)(Math.Atan2(b.Y, b.X) - Math.Atan2(a.Y, a.X) / Math.PI * 180f);
         }
 
 
@@ -102,7 +55,7 @@ namespace MicroEngine.src.Math2D
         {
             return radian * 180f / 3.1415f;
         }
-
+        
 
         public static Vector2f Rotate(this Vector2f v, float angle)
         {
@@ -134,9 +87,9 @@ namespace MicroEngine.src.Math2D
         }
 
 
-        public static float Dot(this Vector2f a, Vector2f b)
+        public static Vector2f Rotate90Deg(this Vector2f v)
         {
-            return a.X * b.X + a.Y * b.Y;
+            return new Vector2f(-v.Y, v.X);
         }
 
 
@@ -147,23 +100,66 @@ namespace MicroEngine.src.Math2D
             float dp = Dot(ua, ub);
             return Rad2Deg((float)Math.Acos(dp));
         }
+        
+        #endregion
 
 
-        public static Vector2f ProjectOnto(this Vector2f project, Vector2f onto)
+
+        #region Intervals
+
+        public static bool InclusiveOverlaps(float minA, float maxA, float minB, float maxB)
         {
-            float d = Dot(onto, onto);
-            if (0 < d)
-            {
-                float dp = project.Dot(onto);
-                return onto * dp / d;
-            }
-            return onto;
+            return minB <= maxA && minA <= maxB;
+        }
+        
+        
+        public static float ClampOnRange(float x, float min, float max)
+        {
+            if (x < min)
+                return min;
+            else if (max < x)
+                return max;
+            else
+                return x;
         }
 
 
-        public static Vector2f Rotate90Deg(this Vector2f v)
+        public static Vector2f ClampOnAABB(Vector2f p, RectangleCollider r)
         {
-            return new Vector2f(-v.Y, v.X);
+            return new Vector2f(ClampOnRange(p.X, r.MinX, r.MaxX),
+                                ClampOnRange(p.Y, r.MinY, r.MaxY));
+        }
+
+        #endregion
+
+
+
+        #region Vector 2D
+
+        public static float Magnitude(this Vector2f v)
+        {
+            return (float)Math.Sqrt(v.X * v.X + v.Y * v.Y);
+        }
+
+
+        public static float MagnitudeRaw(this Vector2f v)
+        {
+            return v.X * v.X + v.Y * v.Y;
+        }
+
+
+        public static Vector2f Normalize(this Vector2f v)
+        {
+            var m = v.Magnitude();
+            if (m > 0)
+                return v / m;
+            return v;
+        }
+
+
+        public static float Dot(this Vector2f a, Vector2f b)
+        {
+            return a.X * b.X + a.Y * b.Y;
         }
 
 
@@ -186,9 +182,23 @@ namespace MicroEngine.src.Math2D
         }
 
 
-        public static float AngleBetween(this Vector2f a, Vector2f b)
+        public static Vector2f ProjectOnto(this Vector2f project, Vector2f onto)
         {
-            return (float)(Math.Atan2(b.Y, b.X) - Math.Atan2(a.Y, a.X) / Math.PI * 180f);
+            float d = Dot(onto, onto);
+            if (0 < d)
+            {
+                float dp = project.Dot(onto);
+                return onto * dp / d;
+            }
+            return onto;
         }
+
+
+        public static string AsString(this Vector2f v)
+        {
+            return $"({v.X}, {v.Y})";
+        }
+        
+        #endregion       
     }
 }

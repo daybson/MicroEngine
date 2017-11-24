@@ -50,7 +50,7 @@ namespace MicroEngine.src.Collision
 
         public static SupportStruct FindSupportPoint(this RectangleCollider self, Vector2f dir, Vector2f ptOnEdge)
         {
-            var tmpSupport = new SupportStruct(GameMath.MIN_VALUE, float.MinValue);
+            var tmpSupport = new SupportStruct(GameMath.MIN_VALUE_VECTOR2F, float.MinValue);
 
             for (var i = 0; i < self.Vertex.Length; i++)
             {
@@ -96,7 +96,7 @@ namespace MicroEngine.src.Collision
 
         public static Vector2f GetIntersectionPoint(SegmentCollider a, SegmentCollider b)
         {
-            var intersection = GameMath.INF_NEGATIVE;
+            var intersection = GameMath.INF_NEGATIVE_VECTOR2F;
             float s1_x, s1_y, s2_x, s2_y;
             s1_x = a.Point2.X - a.Point1.X;
             s1_y = a.Point2.Y - a.Point1.Y;
@@ -158,15 +158,6 @@ namespace MicroEngine.src.Collision
                 return true;
 
             return false;
-        }
-
-
-        public static bool EarlyExitOBBxOBBPhysicsCookbook(ref RectangleCollider r1, ref RectangleCollider r2)
-        {
-            var boundR1 = new RectangleCollider(r1.MaxX - r1.MinX, r1.MaxY - r1.MinY, new Vector2f());
-            var boundR2 = new RectangleCollider(r2.MaxX - r2.MinX, r2.MaxY - r2.MinY, new Vector2f());
-
-            return EarlyExitAABBxAABBPhysicsCookbook(boundR1, boundR2);
         }
 
 
@@ -259,11 +250,6 @@ namespace MicroEngine.src.Collision
                 collisionInfo = new CollisionInfo(cx, nx, mtdx);
                 return true;
             }
-
-
-            //Tenta early exit para bound obb
-            //if (EarlyExitOBBxOBBPhysicsCookbook(ref ra, ref rb))
-            //  return false;
 
             CollisionInfo infoSelf = null;
             CollisionInfo infoOther = null;
@@ -389,7 +375,7 @@ namespace MicroEngine.src.Collision
 
                 //encontra um ponto de intersecção entre os segmentos, caso exista
                 var c = GetIntersectionPoint(s, e);
-                if (c != GameMath.INF_NEGATIVE)
+                if (c != GameMath.INF_NEGATIVE_VECTOR2F)
                 {
                     contacts[indexContacts++] = c;
                     //encontrado o máximo possível de colisões, termina o loop (early exit)
